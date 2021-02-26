@@ -1,9 +1,8 @@
 import React from 'react';
-import countries from '../../countries.json';
 
 const CountryDetails = (props) => {
   const countryId = props.match.params.cca3;
-  const country = countries.find((country) => country.cca3 === countryId);
+  const country = props.countries.find((country) => country.cca3 === countryId);
   console.log('country', country);
   return (
     <div>

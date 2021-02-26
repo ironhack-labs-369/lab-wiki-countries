@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import countries from '../../countries.json';
+// import countries from '../../countries.json';
 
-const CountriesList = () => {
+const CountriesList = (props) => {
   return (
     <div>
       <h2>Countries</h2>
-      {countries.map((country) => {
+      {props.countries.map((country) => {
         return (
           <div key={country.cca3}>
             <h3>

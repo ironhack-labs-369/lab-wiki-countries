@@ -1,12 +1,14 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
 import { Route } from 'react-router-dom';
+import countriesJson from './countries.json';
 import CountriesList from './Components/CountriesList/CountriesList';
 import CountryDetails from './Components/CountryDetails/CountryDetails';
-
 import Navbar from './Components/Navbar/Navbar';
 
 function App() {
+  const [countries, setCounties] = useState(countriesJson);
+
   return (
     <div className="App">
       <Navbar />
@@ -27,7 +29,12 @@ function App() {
             margin: '0 5% 0 0',
           }}
         >
-          <Route path="/" component={CountriesList} />
+          <Route
+            path="/"
+            render={(props) => (
+              <CountriesList {...props} countries={countries} />
+            )}
+          />
         </div>
         <div
           style={{
@@ -37,7 +44,12 @@ function App() {
             alignItems: 'center',
           }}
         >
-          <Route path="/countries/:cca3" component={CountryDetails} />
+          <Route
+            path="/countries/:cca3"
+            render={(props) => (
+              <CountryDetails {...props} countries={countries} />
+            )}
+          />
         </div>
       </div>
     </div>
