@@ -14,7 +14,7 @@ const CountriesList = () => {
                 {country.name.common}
               </Link>
             </h3>
-            <h4> Capital: {country.capital}</h4>
+            <h5> {country.region}</h5>
             <hr />
           </div>
         );

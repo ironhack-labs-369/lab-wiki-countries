@@ -10,8 +10,23 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <div style={{ display: 'flex', width: '100vw', margin: '0 5% 5% 5%' }}>
-        <div style={{ width: '30%' }}>
+      <div
+        style={{
+          display: 'flex',
+          width: '100vw',
+          margin: '0 5% 5% 5%',
+          position: 'fixed',
+        }}
+      >
+        <div
+          style={{
+            width: '35%',
+            height: '100vh',
+            overflowX: 'hidden',
+            overflowY: 'auto',
+            margin: '0 5% 0 0',
+          }}
+        >
           <Route path="/" component={CountriesList} />
         </div>
         <div
