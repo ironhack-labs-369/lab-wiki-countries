@@ -23,4 +23,4 @@ const CountriesList = () => {
   );
 };
 
-export default { CountriesList, countries };
+export default CountriesList;
