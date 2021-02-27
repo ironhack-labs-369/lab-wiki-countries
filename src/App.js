@@ -1,16 +1,29 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 import { Route } from 'react-router-dom';
-import countriesJson from './countries.json';
+import axios from 'axios';
+// import countriesJson from './countries.json';
 import CountriesList from './Components/CountriesList/CountriesList';
 import CountryDetails from './Components/CountryDetails/CountryDetails';
 import Navbar from './Components/Navbar/Navbar';
 
 function App() {
-  const [countries, setCounties] = useState(countriesJson);
+  const [countries, setCountries] = useState('');
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const countriesAPI = await axios.get(
+        'https://restcountries.eu/rest/v2/all'
+      );
+      console.log('countriesAPI', countriesAPI.data);
+      setCountries(countriesAPI.data);
+    };
+    fetchData();
+  }, []);
+
+  if (!countries) return <h3>Loading...</h3>;
   return (
-    <div className="App">
+    <div className="App" style={{ backgroundColor: 'rgb(102,127,255)' }}>
       <Navbar />
       <div
         style={{
@@ -42,10 +55,11 @@ function App() {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
+            marginTop: '5%',
           }}
         >
           <Route
-            path="/countries/:cca3"
+            path="/countries/:alpha3Code"
             render={(props) => (
               <CountryDetails {...props} countries={countries} />
             )}
